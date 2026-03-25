@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 1 – Internet Explorer | Praveen Kumar N G</title>
+</head>
+
+<body>
+
+  <h1>Assignment 1 – Internet Explorer</h1>
+  <p><strong>Date:</strong> 09/02/2026</p>
+  <p><strong>Name:</strong> Praveen Kumar N G</p>
+  <p><strong>Subject:</strong> Full Stack Web Development</p>
+
+  <hr />
+
+  <h2>Description</h2>
+  <p>
+    Draw and explain the client-server architecture and trace what happens when you open a website.
+  </p>
+
+  <hr />
+
+  <h2>1. What is Client-Server Architecture?</h2>
+  <p>
+    Client-server architecture is a computing model where two parties — the <strong>client</strong> and the
+    <strong>server</strong> — communicate over a network. The client makes requests, and the server processes those
+    requests and sends back responses.
+  </p>
+
+  <ul>
+    <li><strong>Client:</strong> The user's device (browser, mobile app, etc.) that initiates requests.</li>
+    <li><strong>Server:</strong> A powerful computer (or group of computers) that stores data and applications
+      and responds to client requests.</li>
+    <li><strong>Network:</strong> The communication medium (usually the Internet) that connects the client and server.</li>
+  </ul>
+
+  <hr />
+
+  <h2>2. Diagram – Client-Server Architecture</h2>
+
+  <pre>
+
+  +------------------+          Internet / Network           +----------------------+
+  |                  |                                       |                      |
+  |     CLIENT       | -------- HTTP Request -------------> |       SERVER         |
+  |    (Browser)     |                                       |  (Web Server +       |
+  |                  | <------- HTTP Response (HTML/CSS/JS)- |   Application +      |
+  |                  |                                       |   Database)          |
+  +------------------+                                       +----------------------+
+
+  Client Side                               Server Side
+  ----------------------------               ----------------------------
+  - Web Browser (Chrome, Firefox, Edge)      - Web Server (Apache, Nginx)
+  - Renders HTML, CSS, JavaScript            - Application Server (Node.js, PHP)
+  - Handles user interactions                - Database Server (MySQL, MongoDB)
+  - Sends HTTP Requests                      - Returns HTTP Responses
+
+  </pre>
+
+  <hr />
+
+  <h2>3. What Happens When You Open a Website?</h2>
+  <p>
+    When you type a URL (e.g., <code>https://www.google.com</code>) into a browser and press Enter,
+    the following steps happen in sequence:
+  </p>
+
+  <ol>
+    <li>
+      <strong>Step 1 – URL Parsing</strong><br />
+      The browser parses the URL into its parts:
+      <ul>
+        <li><strong>Protocol:</strong> <code>https://</code> (HyperText Transfer Protocol Secure)</li>
+        <li><strong>Domain:</strong> <code>www.google.com</code></li>
+        <li><strong>Path:</strong> <code>/</code> (root page)</li>
+      </ul>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 2 – DNS Lookup (Domain Name System)</strong><br />
+      The browser does not know the IP address of <code>www.google.com</code>, so it asks a
+      <strong>DNS server</strong> to translate the domain name into an IP address (e.g., <code>142.250.195.68</code>).
+      This process is called <em>DNS Resolution</em>.
+      <ul>
+        <li>Browser checks its own DNS cache first.</li>
+        <li>If not found, asks the OS, then the Router, then the ISP's DNS server.</li>
+        <li>If still not found, the DNS resolver queries root name servers → TLD servers → authoritative DNS server.</li>
+        <li>The IP address is returned to the browser.</li>
+      </ul>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 3 – TCP Connection (Three-Way Handshake)</strong><br />
+      The browser establishes a connection with the server using the <strong>TCP protocol</strong>:
+      <pre>
+
+  Client  -------- SYN -----------------> Server   (Client: "Can we connect?")
+  Client  <------- SYN-ACK -------------- Server   (Server: "Yes, ready!")
+  Client  -------- ACK -----------------> Server   (Client: "Great, connected!")
+
+  Connection Established.
+
+      </pre>
+      If HTTPS is used, a <strong>TLS handshake</strong> also occurs to establish an encrypted connection.
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 4 – HTTP Request</strong><br />
+      The browser sends an <strong>HTTP GET request</strong> to the server:
+      <pre>
+  GET / HTTP/1.1
+  Host: www.google.com
+  User-Agent: Mozilla/5.0 ...
+  Accept: text/html
+      </pre>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 5 – Server Processes the Request</strong><br />
+      The web server receives the request and:
+      <ul>
+        <li>Routes the request to the appropriate application (e.g., PHP, Node.js).</li>
+        <li>The application may query a <strong>database</strong> for dynamic content.</li>
+        <li>Generates an HTML response.</li>
+      </ul>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 6 – HTTP Response</strong><br />
+      The server sends back an HTTP response:
+      <pre>
+  HTTP/1.1 200 OK
+  Content-Type: text/html
+  Content-Length: 5893
+
+  &lt;!DOCTYPE html&gt;
+  &lt;html&gt;...&lt;/html&gt;
+      </pre>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 7 – Browser Renders the Page</strong><br />
+      The browser receives the HTML and renders it step by step:
+      <ul>
+        <li><strong>Parsing HTML</strong> → builds the <abbr title="Document Object Model">DOM</abbr> tree.</li>
+        <li><strong>Parsing CSS</strong> → builds the CSSOM (CSS Object Model).</li>
+        <li><strong>Combining DOM + CSSOM</strong> → creates the Render Tree.</li>
+        <li><strong>Layout</strong> → calculates size and position of each element.</li>
+        <li><strong>Painting</strong> → draws pixels on the screen.</li>
+        <li><strong>JavaScript Execution</strong> → JS is parsed and executed, which may modify the DOM dynamically.</li>
+        <li>Additional resources (images, CSS, JS files) are fetched with separate HTTP requests.</li>
+      </ul>
+    </li>
+
+    <br />
+
+    <li>
+      <strong>Step 8 – Page is Displayed</strong><br />
+      The fully rendered page is now visible to the user in the browser window.
+    </li>
+  </ol>
+
+  <hr />
+
+  <h2>4. Summary Flow Diagram</h2>
+
+  <pre>
+
+  [1] User types URL in Browser (e.g. https://www.google.com)
+       |
+       v
+  [2] DNS Resolution  -->  Domain Name converted to IP Address
+       |
+       v
+  [3] TCP Handshake   -->  Client and Server establish connection (SYN / SYN-ACK / ACK)
+       |
+       v
+  [4] TLS Handshake   -->  Encrypted session established (only for HTTPS)
+       |
+       v
+  [5] HTTP GET Request sent by Browser to Server
+       |
+       v
+  [6] Server processes the request (Application Server queries Database if needed)
+       |
+       v
+  [7] Server sends HTTP Response  -->  HTML, CSS, JS files
+       |
+       v
+  [8] Browser parses HTML  -->  Builds DOM Tree
+       |
+       v
+  [9] Browser applies CSS  -->  Builds CSSOM
+       |
+       v
+  [10] DOM + CSSOM  -->  Render Tree  -->  Layout  -->  Paint  -->  Display
+       |
+       v
+  Website is fully visible to the User.
+
+  </pre>
+
+  <hr />
+
+  <h2>5. Key Terms</h2>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Term</th>
+        <th>Full Form</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HTTP</td>
+        <td>HyperText Transfer Protocol</td>
+        <td>Protocol used to transfer web data between client and server.</td>
+      </tr>
+      <tr>
+        <td>HTTPS</td>
+        <td>HTTP Secure</td>
+        <td>Encrypted version of HTTP using TLS/SSL.</td>
+      </tr>
+      <tr>
+        <td>DNS</td>
+        <td>Domain Name System</td>
+        <td>Translates human-readable domain names to IP addresses.</td>
+      </tr>
+      <tr>
+        <td>TCP</td>
+        <td>Transmission Control Protocol</td>
+        <td>Reliable protocol that ensures data is delivered correctly.</td>
+      </tr>
+      <tr>
+        <td>IP</td>
+        <td>Internet Protocol</td>
+        <td>Numerical address identifying a device on the network.</td>
+      </tr>
+      <tr>
+        <td>URL</td>
+        <td>Uniform Resource Locator</td>
+        <td>The web address used to locate a resource on the Internet.</td>
+      </tr>
+      <tr>
+        <td>DOM</td>
+        <td>Document Object Model</td>
+        <td>Tree structure representing the HTML document in memory.</td>
+      </tr>
+      <tr>
+        <td>TLS</td>
+        <td>Transport Layer Security</td>
+        <td>Cryptographic protocol that provides secure communication.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <p>&copy; 2026 Praveen Kumar N G &nbsp;&middot;&nbsp; SuprMentr FSWD Internship – Assignment 1</p>
+
+</body>
+
+</html>

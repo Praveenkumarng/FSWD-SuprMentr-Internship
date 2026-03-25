@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment: Component Hunt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* --- Wireframe Component Sketching Styles --- */
+        .component {
+            border: 2px dashed #95a5a6;
+            background-color: #ecf0f1;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        /* This is the magic that adds the red "Component Name" label to every box */
+        .component::before {
+            content: attr(data-name);
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            background: #fff;
+            padding: 0 5px;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 12px;
+            border: 1px solid #e74c3c;
+            border-radius: 3px;
+        }
+
+        /* --- Application Layout using CSS Flexbox --- */
+        
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 3px solid #34495e;
+            background-color: white;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Component Layout */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            height: 60px;
+        }
+        .logo { width: 15%; height: 30px; }
+        .search-bar { width: 50%; height: 30px; }
+        .user-profile { width: 15%; height: 30px; }
+
+        /* Main Body Component Layout */
+        .main-body {
+            display: flex;
+            flex: 1; /* take up the rest of the height */
+        }
+        
+        /* Sidebar Component Layout */
+        .sidebar {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-item {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* Content Area Component Layout */
+        .content-area {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;       /* Allows cards to wrap to the next row */
+            align-content: flex-start;
+        }
+
+        /* Individual Video Card Component Layout */
+        .video-card {
+            width: 30%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+        .thumbnail {
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        .video-info {
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Component Hunt: YouTube UI Structure</h1>
+    <p>This is a breakdown of a popular website (YouTube) into standard UI components using HTML and CSS Flexbox to sketch the structure.</p>
+
+    <!-- App Container Component (The whole screen) -->
+    <div class="component app-container" data-name="App Component">
+        
+        <!-- Header Component -->
+        <div class="component header" data-name="Header Component">
+            <div class="component logo" data-name="Logo Component"></div>
+            <div class="component search-bar" data-name="SearchBar Component"></div>
+            <div class="component user-profile" data-name="UserProfile Component"></div>
+        </div>
+
+        <!-- Main Body Component -->
+        <div class="main-body">
+            
+            <!-- Sidebar Navigation Component -->
+            <div class="component sidebar" data-name="Sidebar Component">
+                <div class="component sidebar-item" data-name="NavigationLink"></div>
+                <div class="component sidebar-item" data-name="NavigationLink"></div>
+                <div class="component sidebar-item" data-name="NavigationLink"></div>
+                <div class="component sidebar-item" data-name="NavigationLink"></div>
+            </div>
+
+            <!-- Video Feed Component -->
+            <div class="component content-area" data-name="VideoFeed Component">
+                
+                <!-- Video Card Component 1 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+                <!-- Video Card Component 2 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+                <!-- Video Card Component 3 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+                <!-- Video Card Component 4 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+                <!-- Video Card Component 5 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+                <!-- Video Card Component 6 -->
+                <div class="component video-card" data-name="VideoCard Component">
+                    <div class="component thumbnail" data-name="Thumbnail"></div>
+                    <div class="component video-info" data-name="VideoDetails"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

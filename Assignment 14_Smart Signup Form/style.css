@@ -1,0 +1,571 @@
+/* ========================================
+   SMART SIGNUP FORM — style.css
+   ======================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary:        #6366f1;
+  --primary-dark:   #4f46e5;
+  --primary-light:  #a5b4fc;
+  --accent:         #a855f7;
+  --success:        #22c55e;
+  --danger:         #f43f5e;
+  --warning:        #f59e0b;
+  --bg:             #0f0f1a;
+  --surface:        #16162a;
+  --surface2:       #1e1e38;
+  --border:         rgba(255,255,255,0.08);
+  --text:           #f1f5f9;
+  --text-muted:     #94a3b8;
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ---- Body & Background ---- */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.25;
+  pointer-events: none;
+  animation: floatOrb 8s ease-in-out infinite alternate;
+}
+
+.orb1 {
+  width: 500px; height: 500px;
+  background: var(--primary);
+  top: -150px; left: -150px;
+  animation-delay: 0s;
+}
+.orb2 {
+  width: 400px; height: 400px;
+  background: var(--accent);
+  bottom: -100px; right: -100px;
+  animation-delay: -3s;
+}
+.orb3 {
+  width: 300px; height: 300px;
+  background: #06b6d4;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -6s;
+}
+
+@keyframes floatOrb {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.15) translate(20px, 20px); }
+}
+
+/* ---- Card ---- */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.5rem 2.25rem;
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 25px 50px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  animation: cardIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---- Card Header ---- */
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.3);
+  margin-bottom: 1rem;
+}
+.logo svg { width: 36px; height: 36px; }
+
+.card-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 30%, var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.card-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+/* ---- Form Layout ---- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.optional {
+  font-size: 0.72rem;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* ---- Inputs ---- */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.9rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  transition: color var(--transition);
+}
+.input-icon svg { width: 16px; height: 16px; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 2.8rem 0.7rem 2.5rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+input::placeholder { color: #475569; }
+
+input:focus {
+  border-color: var(--primary);
+  background: rgba(99,102,241,0.04);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.18);
+}
+
+input:focus + .status-icon { opacity: 1; }
+
+/* State colors */
+.form-group.valid input   { border-color: var(--success); }
+.form-group.invalid input { border-color: var(--danger); }
+
+.form-group.valid   input:focus { box-shadow: 0 0 0 3px rgba(34,197,94,0.18); }
+.form-group.invalid input:focus { box-shadow: 0 0 0 3px rgba(244,63,94,0.18); }
+
+.form-group.valid   .input-icon { color: var(--success); }
+.form-group.invalid .input-icon { color: var(--danger); }
+
+/* Status icon tick/cross */
+.status-icon {
+  position: absolute;
+  right: 0.9rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+.form-group.valid   .status-icon::after { content: '✓'; color: var(--success); opacity: 1; }
+.form-group.invalid .status-icon::after { content: '✕'; color: var(--danger);  opacity: 1; }
+.form-group.valid   .status-icon,
+.form-group.invalid .status-icon { opacity: 1; }
+
+/* Password toggle button sits on the right */
+.toggle-pw {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color var(--transition);
+  z-index: 1;
+}
+.toggle-pw:hover { color: var(--primary-light); }
+.toggle-pw svg { width: 16px; height: 16px; }
+
+/* Adjust padding when toggle exists */
+.form-group:has(.toggle-pw) input { padding-right: 2.75rem; }
+
+/* ---- Error Messages ---- */
+.error-msg {
+  font-size: 0.78rem;
+  color: var(--danger);
+  margin-top: 0.35rem;
+  min-height: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.error-msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.error-msg::before { content: '⚠'; font-size: 0.7rem; }
+
+/* ---- Password Strength ---- */
+.strength-meter {
+  margin-top: 0.75rem;
+  display: none;
+}
+.strength-meter.show { display: block; }
+
+.strength-bars {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.4rem;
+}
+
+.bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+.strength-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+/* Strength states */
+.strength-weak   .bar:nth-child(1)                         { background: var(--danger); }
+.strength-fair   .bar:nth-child(-n+2)                      { background: var(--warning); }
+.strength-good   .bar:nth-child(-n+3)                      { background: #3b82f6; }
+.strength-strong .bar                                       { background: var(--success); }
+
+.strength-weak   .strength-label { color: var(--danger); }
+.strength-fair   .strength-label { color: var(--warning); }
+.strength-good   .strength-label { color: #3b82f6; }
+.strength-strong .strength-label { color: var(--success); }
+
+/* ---- Password Requirements ---- */
+.pw-requirements {
+  list-style: none;
+  margin-top: 0.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem 1.5rem;
+  display: none;
+}
+.pw-requirements.show { display: grid; }
+
+.req-item {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--transition);
+}
+
+.req-icon {
+  flex-shrink: 0;
+  font-style: normal;
+  transition: color var(--transition);
+}
+
+.req-item.met {
+  color: var(--success);
+}
+.req-item.met .req-icon::before { content: '✓'; color: var(--success); }
+.req-item:not(.met) .req-icon::before { content: '○'; }
+
+/* ---- Checkbox ---- */
+.checkbox-group {
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.checkbox-label input[type="checkbox"] { display: none; }
+
+.custom-check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface2);
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.custom-check::after {
+  content: '';
+  width: 10px; height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+input[type="checkbox"]:checked ~ .custom-check {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+input[type="checkbox"]:checked ~ .custom-check::after { opacity: 1; }
+
+.link {
+  color: var(--primary-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.link:hover { color: #fff; text-decoration: underline; }
+
+/* ---- Submit Button ---- */
+.btn-submit {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    opacity var(--transition);
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.55);
+}
+.btn-submit:hover:not(:disabled)::before { opacity: 1; }
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-text, .btn-loader { position: relative; z-index: 1; }
+
+.btn-loader {
+  display: none;
+}
+.btn-loader svg {
+  width: 18px; height: 18px;
+  animation: spin 0.8s linear infinite;
+}
+
+.btn-submit.loading .btn-text { display: none; }
+.btn-submit.loading .btn-loader { display: flex; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.signin-link {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+/* ---- Success Overlay ---- */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.success-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.success-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.success-overlay.show .success-card { transform: scale(1); }
+
+.success-icon {
+  display: inline-flex;
+  margin-bottom: 1.25rem;
+}
+.success-icon svg { width: 64px; height: 64px; }
+
+.success-card h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #86efac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.6rem;
+}
+.success-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.btn-back {
+  padding: 0.7rem 2rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.btn-back:hover {
+  border-color: var(--primary);
+  background: rgba(99,102,241,0.1);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .card { padding: 2rem 1.25rem; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .pw-requirements { grid-template-columns: 1fr; }
+}
+
+/* ---- Shake animation for errors ---- */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }

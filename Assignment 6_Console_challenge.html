@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment: Console Challenge</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 10vh 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            display: inline-block;
+            max-width: 600px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 1.15em;
+            line-height: 1.6;
+        }
+        code {
+            background-color: #eef2f5;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Console Challenge</h1>
+        <p>This assignment runs JavaScript calculator operations directly in the browser console.</p>
+        <p>Please right-click and select <strong>Inspect</strong>, or press <code>F12</code> / <code>Ctrl + Shift + I</code> to open the <strong>Developer Console</strong> to see the results.</p>
+        <p>In the console, you can interact directly with functions like <code>add(a, b)</code>, <code>subtract(a, b)</code>, <code>multiply(a, b)</code>, and <code>divide(a, b)</code>.</p>
+    </div>
+
+    <script>
+        console.log("%c=== Console Challenge: Calculator Operations ===", "color: #27ae60; font-size: 18px; font-weight: bold;");
+
+        // Core Calculator Functions
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                return "Error: Cannot divide by zero.";
+            }
+            return a / b;
+        }
+
+        // Outputting initial static tests
+        console.log("%cExample Static Outputs:", "color: #2980b9; font-size: 14px; font-weight: bold;");
+        console.log("Addition (12 + 8) =", add(12, 8));
+        console.log("Subtraction (50 - 15) =", subtract(50, 15));
+        console.log("Multiplication (7 * 6) =", multiply(7, 6));
+        console.log("Division (100 / 4) =", divide(100, 4));
+        console.log("Division by Zero (10 / 0) =", divide(10, 0));
+        
+        console.log("\n%c🚀 Your Turn: Type the following functions directly into this console:", "color: #8e44ad; font-weight: bold;");
+        console.log(" 👉 add(num1, num2)\n 👉 subtract(num1, num2)\n 👉 multiply(num1, num2)\n 👉 divide(num1, num2)");
+    </script>
+
+</body>
+</html>

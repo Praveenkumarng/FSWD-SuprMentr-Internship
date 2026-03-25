@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Signup Form</title>
+  <meta name="description" content="Create your account with our smart signup form featuring real-time validation and password strength meter." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <main class="container">
+    <div class="card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="url(#logoGrad)"/>
+            <path d="M12 20.5l5.5 5.5L28 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1>Create Account</h1>
+        <p>Join us today — it's completely free</p>
+      </div>
+
+      <!-- Form -->
+      <form id="signupForm" novalidate>
+
+        <!-- Name Row -->
+        <div class="form-row">
+          <div class="form-group" id="fg-firstname">
+            <label for="firstname">First Name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input type="text" id="firstname" name="firstname" placeholder="John" autocomplete="given-name" />
+              <span class="status-icon"></span>
+            </div>
+            <p class="error-msg" id="err-firstname"></p>
+          </div>
+
+          <div class="form-group" id="fg-lastname">
+            <label for="lastname">Last Name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input type="text" id="lastname" name="lastname" placeholder="Doe" autocomplete="family-name" />
+              <span class="status-icon"></span>
+            </div>
+            <p class="error-msg" id="err-lastname"></p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group" id="fg-email">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </span>
+            <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" />
+            <span class="status-icon"></span>
+          </div>
+          <p class="error-msg" id="err-email"></p>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group" id="fg-phone">
+          <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </span>
+            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" />
+            <span class="status-icon"></span>
+          </div>
+          <p class="error-msg" id="err-phone"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group" id="fg-password">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </span>
+            <input type="password" id="password" name="password" placeholder="Create a strong password" autocomplete="new-password" />
+            <button type="button" class="toggle-pw" id="togglePassword" aria-label="Toggle password visibility">
+              <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+
+          <!-- Strength Meter -->
+          <div class="strength-meter" id="strengthMeter" aria-live="polite">
+            <div class="strength-bars">
+              <div class="bar" id="bar1"></div>
+              <div class="bar" id="bar2"></div>
+              <div class="bar" id="bar3"></div>
+              <div class="bar" id="bar4"></div>
+            </div>
+            <span class="strength-label" id="strengthLabel">Enter a password</span>
+          </div>
+
+          <!-- Requirements checklist -->
+          <ul class="pw-requirements" id="pwRequirements">
+            <li id="req-length" class="req-item">
+              <span class="req-icon">○</span> At least 8 characters
+            </li>
+            <li id="req-upper" class="req-item">
+              <span class="req-icon">○</span> One uppercase letter (A–Z)
+            </li>
+            <li id="req-lower" class="req-item">
+              <span class="req-icon">○</span> One lowercase letter (a–z)
+            </li>
+            <li id="req-number" class="req-item">
+              <span class="req-icon">○</span> One number (0–9)
+            </li>
+            <li id="req-special" class="req-item">
+              <span class="req-icon">○</span> One special character (!@#$…)
+            </li>
+          </ul>
+          <p class="error-msg" id="err-password"></p>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group" id="fg-confirm">
+          <label for="confirm">Confirm Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </span>
+            <input type="password" id="confirm" name="confirm" placeholder="Re-enter your password" autocomplete="new-password" />
+            <button type="button" class="toggle-pw" id="toggleConfirm" aria-label="Toggle confirm password visibility">
+              <svg id="eyeOpen2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="eyeClosed2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+          <p class="error-msg" id="err-confirm"></p>
+        </div>
+
+        <!-- Terms -->
+        <div class="form-group checkbox-group" id="fg-terms">
+          <label class="checkbox-label">
+            <input type="checkbox" id="terms" name="terms" />
+            <span class="custom-check"></span>
+            <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+          </label>
+          <p class="error-msg" id="err-terms"></p>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-text">Create Account</span>
+          <span class="btn-loader" id="btnLoader" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </span>
+        </button>
+
+        <p class="signin-link">Already have an account? <a href="#" class="link">Sign in</a></p>
+
+      </form>
+    </div>
+
+    <!-- Success overlay -->
+    <div class="success-overlay" id="successOverlay" aria-hidden="true">
+      <div class="success-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="30" fill="url(#successGrad)"/>
+            <path d="M18 30.5l8.5 8.5L42 22" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="successGrad" x1="0" y1="0" x2="60" y2="60">
+                <stop offset="0%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#16a34a"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h2>Account Created!</h2>
+        <p>Welcome aboard! Your account has been successfully created.</p>
+        <button class="btn-back" id="btnBack">Back to Form</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

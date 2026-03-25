@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment: Student Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .student-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .class-average {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #27ae60;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Student Manager</h1>
+        <p style="text-align:center;"><em>Check the developer console for the output as well!</em></p>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Array of Objects containing Student Data
+        var students = [
+            { name: "Praveen Kumar", marks: [85, 92, 88, 90, 89] },
+            { name: "Alice Smith", marks: [72, 65, 80, 75, 68] },
+            { name: "Bob Johnson", marks: [95, 98, 92, 96, 100] },
+            { name: "Diana Prince", marks: [88, 85, 90, 84, 89] }
+        ];
+
+        var totalClassMarks = 0;
+        var totalSubjectsCount = 0;
+        
+        // This is where we will write the output to the webpage
+        var outputDiv = document.getElementById("output");
+        var htmlContent = "";
+
+        // Use a simple for loop to go through each student
+        for (var i = 0; i < students.length; i++) {
+            var student = students[i];
+            var studentSum = 0;
+            
+            // Use another for loop to add up all their marks
+            for (var j = 0; j < student.marks.length; j++) {
+                studentSum = studentSum + student.marks[j];
+                totalClassMarks = totalClassMarks + student.marks[j];
+            }
+            
+            // Calculate the student's average
+            var studentAverage = studentSum / student.marks.length;
+            
+            // Add to the total subjects count to calculate class average later
+            totalSubjectsCount = totalSubjectsCount + student.marks.length;
+            
+            // Build the HTML to display on the page
+            htmlContent += "<div class='student-item'>";
+            htmlContent += "<h2>" + student.name + "</h2>";
+            htmlContent += "<p><strong>Marks:</strong> " + student.marks + "</p>";
+            htmlContent += "<p><strong>Average:</strong> " + studentAverage + "</p>";
+            htmlContent += "</div>";
+
+            // Print the same information to the console
+            console.log("Name: " + student.name);
+            console.log("Marks: " + student.marks);
+            console.log("Average: " + studentAverage);
+            console.log("-----------------------");
+        }
+
+        // Calculate the overall class average
+        var classAverage = totalClassMarks / totalSubjectsCount;
+        
+        // Output class average to the HTML and Console
+        htmlContent += "<div class='class-average'>Overall Class Average: " + classAverage + "</div>";
+        console.log("Overall Class Average: " + classAverage);
+
+        // Finally, put the built HTML inside the output div
+        outputDiv.innerHTML = htmlContent;
+
+    </script>
+</body>
+</html>

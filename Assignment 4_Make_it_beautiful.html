@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 3 – Make It Beautiful | Praveen Kumar N G</title>
+  <style>
+    /* ── Reset ── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ── Body ── */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #1a2b3c;
+      line-height: 1.7;
+      padding: 30px 16px;
+    }
+
+
+    /* ── Card wrapper ── */
+    .profile-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    /* ── Profile Banner ── */
+    .banner {
+      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+      padding: 40px 36px 30px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .banner img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      object-fit: cover;
+    }
+
+    .banner-text h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+    }
+
+    .banner-text p {
+      font-size: 1rem;
+      color: #cce0ff;
+      margin-top: 4px;
+    }
+
+    /* ── Contact pills ── */
+    .contact-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 18px 36px;
+      background-color: #e8f0fe;
+      border-bottom: 1px solid #d0ddf5;
+    }
+
+    .contact-pills a {
+      text-decoration: none;
+      color: #1a73e8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: #ffffff;
+      border: 1px solid #c5d5f5;
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+
+    .contact-pills a:hover {
+      background: #1a73e8;
+      color: #ffffff;
+    }
+
+    /* ── Main content area ── */
+    .content {
+      padding: 30px 36px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #1a73e8;
+      border-left: 4px solid #1a73e8;
+      padding-left: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* ── About ── */
+    .section p {
+      font-size: 0.95rem;
+      color: #3a4a5c;
+    }
+
+    /* ── Skills ── */
+    .skill-group {
+      margin-bottom: 14px;
+    }
+
+    .skill-group h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #5a6a80;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+
+    .tag.lang {
+      background: #f3e8ff;
+      color: #7c3aed;
+      border-color: #ddd0f7;
+    }
+
+    .tag.web {
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-color: #c5d5f5;
+    }
+
+    .tag.db {
+      background: #fff3e0;
+      color: #e65100;
+      border-color: #ffd9a8;
+    }
+
+    .tag.tool {
+      background: #e6f9ec;
+      color: #2e7d32;
+      border-color: #b8e6c0;
+    }
+
+    /* ── Education & Experience items ── */
+    .entry {
+      border-left: 3px solid #1a73e8;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      background: #f7f9ff;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .entry h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1a2b3c;
+    }
+
+    .entry .sub {
+      font-size: 0.87rem;
+      color: #1a73e8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .entry .meta {
+      font-size: 0.82rem;
+      color: #6a7a8c;
+      margin-top: 4px;
+    }
+
+    .entry ul {
+      margin: 8px 0 0 18px;
+      font-size: 0.88rem;
+      color: #3a4a5c;
+    }
+
+    .entry ul li {
+      margin-top: 4px;
+    }
+
+    /* ── Projects grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: #f7f9ff;
+      border: 1px solid #d0ddf5;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .project-card h3 {
+      font-size: 0.93rem;
+      font-weight: 700;
+      color: #1a2b3c;
+      margin-bottom: 6px;
+    }
+
+    .project-card p {
+      font-size: 0.83rem;
+      color: #4a5c70;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .project-card .tags .tag {
+      font-size: 0.72rem;
+      padding: 2px 10px;
+    }
+
+    /* ── Hobbies ── */
+    .hobbies-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hobbies-list li {
+      background: #e8f0fe;
+      color: #1a4a9e;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.78rem;
+      color: #8a9ab0;
+      border-top: 1px solid #e0e8f0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .banner {
+        padding: 28px 20px;
+      }
+
+      .content {
+        padding: 22px 20px;
+      }
+
+      .contact-pills {
+        padding: 14px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Profile Card -->
+  <div class="profile-card">
+
+    <!-- Banner with photo + name -->
+    <div class="banner">
+      <img src="profile.jpg" alt="Praveen Kumar N G" />
+      <div class="banner-text">
+        <h1>Praveen Kumar N G</h1>
+        <p>MERN Stack Developer &nbsp;&middot;&nbsp; Final-Year ISE Student &nbsp;&middot;&nbsp; Bangalore, India</p>
+      </div>
+    </div>
+
+    <!-- Contact pills -->
+    <div class="contact-pills">
+      <a href="mailto:kumarngpraveen@gmail.com">&#9993; kumarngpraveen@gmail.com</a>
+      <a href="tel:+917892730914">&#128222; +91 78927 30914</a>
+      <a href="https://github.com/Praveenkumarng" target="_blank">&#128279; GitHub</a>
+      <a href="https://www.linkedin.com/in/praveenkumarng/" target="_blank">&#128279; LinkedIn</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+      <!-- About -->
+      <div class="section">
+        <h2>About Me</h2>
+        <p>
+          Final-year <strong>Information Science and Engineering</strong> student at
+          <strong>Jyothy Institute of Technology, Bangalore</strong>. Passionate about building
+          full-stack web applications using the <strong>MERN stack</strong> and exploring
+          technologies like Python, Machine Learning, and REST APIs.
+          Currently interning at <strong>SuprMentr</strong> as a MERN Stack Intern.
+        </p>
+      </div>
+
+      <!-- Technical Skills -->
+      <div class="section">
+        <h2>Technical Skills</h2>
+
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="tags">
+            <span class="tag lang">C</span>
+            <span class="tag lang">C++</span>
+            <span class="tag lang">Python</span>
+            <span class="tag lang">Java</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Web Technologies</h3>
+          <div class="tags">
+            <span class="tag web">HTML5</span>
+            <span class="tag web">CSS3</span>
+            <span class="tag web">JavaScript</span>
+            <span class="tag web">React.js</span>
+            <span class="tag web">Node.js</span>
+            <span class="tag web">Express.js</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Databases</h3>
+          <div class="tags">
+            <span class="tag db">MySQL</span>
+            <span class="tag db">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Tools &amp; Concepts</h3>
+          <div class="tags">
+            <span class="tag tool">Git &amp; GitHub</span>
+            <span class="tag tool">VS Code</span>
+            <span class="tag tool">Eclipse</span>
+            <span class="tag tool">OOPS</span>
+            <span class="tag tool">DSA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <h2>Experience</h2>
+        <div class="entry">
+          <h3>MERN Stack Intern</h3>
+          <div class="sub">SuprMentr &nbsp;&middot;&nbsp; Remote</div>
+          <div class="meta">Feb 2026 – Present</div>
+          <ul>
+            <li>Developing full-stack web applications using the MERN stack.</li>
+            <li>Building responsive React UIs and implementing REST APIs with Node.js &amp; Express.</li>
+            <li>Working with MongoDB for database design and management.</li>
+            <li>Applying OOP and DSA concepts to solve programming assignments.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h2>Academic Projects</h2>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <h3>🌿 Cotton Leaf Disease Detection</h3>
+            <p>Deep learning model using YOLOv9 to detect cotton leaf diseases with real-time predictions via Flask.</p>
+            <div class="tags">
+              <span class="tag lang">Python</span>
+              <span class="tag web">Flask</span>
+              <span class="tag tool">YOLOv9</span>
+              <span class="tag tool">OpenCV</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>📝 Blog Application</h3>
+            <p>Full-stack blog platform with RESTful APIs, React frontend, and MongoDB for content management.</p>
+            <div class="tags">
+              <span class="tag web">React</span>
+              <span class="tag web">Node.js</span>
+              <span class="tag db">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>🏨 Hotel Management System</h3>
+            <p>Web-based system for hotel bookings and reservations with a dynamic dashboard.</p>
+            <div class="tags">
+              <span class="tag lang">PHP</span>
+              <span class="tag db">MySQL</span>
+              <span class="tag web">JavaScript</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <h2>Education</h2>
+        <div class="entry">
+          <h3>B.E. in Information Science &amp; Engineering</h3>
+          <div class="sub">Jyothy Institute of Technology, Bangalore</div>
+          <div class="meta">Dec 2022 – Present &nbsp;|&nbsp; CGPA: 7.9</div>
+        </div>
+        <div class="entry">
+          <h3>Pre-University Course (PCMB)</h3>
+          <div class="sub">Pramana PU College, Raichur</div>
+          <div class="meta">Completed 2020 &nbsp;|&nbsp; 79.33%</div>
+        </div>
+        <div class="entry">
+          <h3>SSLC (10th Grade)</h3>
+          <div class="sub">Sri Chaitanya Techno School, Raichur</div>
+          <div class="meta">Completed 2018 &nbsp;|&nbsp; 81.76%</div>
+        </div>
+      </div>
+
+    </div><!-- end .content -->
+
+    <div class="footer">
+      &copy; 2026 Praveen Kumar N G &nbsp;&middot;&nbsp; SuprMentr FSWD Internship
+    </div>
+
+  </div><!-- end .profile-card -->
+
+</body>
+
+</html>
